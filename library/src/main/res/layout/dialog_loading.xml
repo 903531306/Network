@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:background="@drawable/loading_shape"
+        android:layout_marginTop="@dimen/ws15dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="@dimen/ws70dp"
+        android:layout_height="@dimen/ws70dp">
+        <com.wang.avi.AVLoadingIndicatorView
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/ws40dp"
+            android:layout_height="@dimen/ws40dp"
+            android:id="@+id/indicator"
+            app:indicatorName="BallSpinFadeLoaderIndicator"
+            style="@style/AVLoadingIndicatorView"
+            />
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
