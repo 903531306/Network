@@ -11,14 +11,12 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 
 import com.squareup.otto.Bus;
-import com.ys.network.BaseApplication;
 import com.ys.network.bus.BusProvider;
 
 
 public abstract class DataBindingFragment<B extends ViewDataBinding> extends Fragment {
     public Context context;
     public B mViewBinding = null;
-    protected BaseApplication mApplication;
     private static final String TAG = DataBindingFragment.class.getSimpleName();
     protected Bus bus;
     private boolean isFragmentVisible;
@@ -75,7 +73,6 @@ public abstract class DataBindingFragment<B extends ViewDataBinding> extends Fra
 //                getActivity().getWindow().setStatusBarColor(Color.parseColor("#f05638"));
 ////            getActivity().getWindow().setStatusBarColor(getActivity().getColor(R.color.bg_toolbar_color));
 //            }
-            mApplication = (BaseApplication) getActivity().getApplication();
             bus = BusProvider.getInstance();
             bus.register(this);
             initPresenter();

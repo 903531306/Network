@@ -1,5 +1,6 @@
 package com.ys.network.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,11 +15,11 @@ import java.util.List;
  */
 
 public abstract class  BaseAdapter<T> extends RecyclerView.Adapter<BaseHolder> {
-    protected Context mContext;
+    protected Activity mContext;
     List<T> mList;
     private MyItemClickListener mOnItemClickListener;
     private int selectItem = 0;
-    public BaseAdapter(List<T> list, Context context) {
+    public BaseAdapter(List<T> list, Activity context) {
         this.mContext = context;
         this.mList = list;
     }

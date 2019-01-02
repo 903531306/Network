@@ -12,13 +12,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.ys.network.BaseApplication;
+import com.ys.network.SlidingLayout;
 
 
 public abstract class DataBindingActivity<B extends ViewDataBinding> extends AppCompatActivity {
     protected B mViewBinding = null;
     protected Activity mActivity;
-    protected BaseApplication mApplication;
+//    protected BaseApplication mApplication;
 
     @TargetApi(23)
     @Override
@@ -39,19 +39,37 @@ public abstract class DataBindingActivity<B extends ViewDataBinding> extends App
         setContentView(rootView);
 
         mViewBinding = DataBindingUtil.bind(rootView);
-        mApplication = (BaseApplication) getApplication();
-        if(setStatusBarColor()){
+//        mApplication = (BaseApplication) getApplication();
+        if (setStatusBarColor()) {
             if (Build.VERSION.SDK_INT > 21) {
-                getWindow().setStatusBarColor(Color.parseColor("#f05638"));
+                getWindow().setStatusBarColor(Color.parseColor("#21277B"));
             }
         }
 
 
         initView();
         initData();
+
+        if (isSupportSwipeBack()) {
+            SlidingLayout slidingLayout = new SlidingLayout(this);
+            slidingLayout.bindActivity(this);
+        }
+
+
     }
 
+    /**
+     * 是否支持滑动返回。这里在父类中默认返回 true 来支持滑动返回，如果某个界面不想支持滑动返回则重写该方法返回 false 即可
+     *
+     * @return
+     */
+    public boolean isSupportSwipeBack() {
+        return true;
+    }
+
+
     public abstract boolean setStatusBarColor();
+
     public abstract int getLayoutId();
 
     public abstract void initView();
