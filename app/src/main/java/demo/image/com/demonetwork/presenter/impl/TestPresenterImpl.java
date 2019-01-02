@@ -33,7 +33,7 @@ public class TestPresenterImpl extends BasePresenter<TestPresenter.TestView> imp
             e.printStackTrace();
         }
         RequestBody body = HttpRequestBody.getRequestBody(jsonObject);
-        rx.Observable<PublicEntity> observable = RetrofitManager.getInstace().create(ApiService.class).getMovieListData(body).map((new HttpResultFunc<PublicEntity>()));
+        rx.Observable<PublicEntity> observable = RetrofitManager.getInstace(activity).create(ApiService.class).getMovieListData(body).map((new HttpResultFunc<PublicEntity>()));
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnResponseListenter<PublicEntity>() {
             @Override
             public void next(PublicEntity testBean) {
@@ -45,7 +45,7 @@ public class TestPresenterImpl extends BasePresenter<TestPresenter.TestView> imp
                 baseView.error(errResponse);
             }
         }, activity, false);
-        RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
+        RetrofitManager.getInstace(activity).toSubscribe(observable, (Subscriber) rxSubscription);
         addSubscrebe(rxSubscription);
     }
 
@@ -53,7 +53,7 @@ public class TestPresenterImpl extends BasePresenter<TestPresenter.TestView> imp
     public void area(JSONObject jsonObject, Activity activity) {
         final TestView baseView = getView();
         RequestBody body = HttpRequestBody.getRequestBody(jsonObject);
-        rx.Observable<PublicEntity> observable = RetrofitManager.getInstace().create(ApiService.class).area(body).map((new HttpResultFunc<PublicEntity>()));
+        rx.Observable<PublicEntity> observable = RetrofitManager.getInstace(activity).create(ApiService.class).area(body).map((new HttpResultFunc<PublicEntity>()));
         Subscription rxSubscription = new ProgressSubscriber<>(new SubscriberOnResponseListenter<PublicEntity>() {
             @Override
             public void next(PublicEntity testBean) {
@@ -65,7 +65,7 @@ public class TestPresenterImpl extends BasePresenter<TestPresenter.TestView> imp
                 baseView.error(errResponse);
             }
         }, activity, false);
-        RetrofitManager.getInstace().toSubscribe(observable, (Subscriber) rxSubscription);
+        RetrofitManager.getInstace(activity).toSubscribe(observable, (Subscriber) rxSubscription);
         addSubscrebe(rxSubscription);
     }
 
